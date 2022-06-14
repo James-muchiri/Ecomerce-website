@@ -279,7 +279,29 @@ margin-left: 25vw;
 
 						@endforeach
 
+                        
 					</ul>
+                    <ul class="main-nav nav" style="float: right;">
+                     
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+                          <ul class="dropdown-menu" >
+                @if (Auth::guard('userauth')->check())           
+                            <li  style="padding:10px;"><a href="#">{{auth()->guard('userauth')->user()->first_name}} {{auth()->guard('userauth')->user()->last_name}}</a></li>
+                            <li  style="padding:10px;"><a href="#">Profile</a></li>
+                            <li  style="padding:10px;"><a href="#">Change Password</a></li>     
+                            <li  style="padding:10px;"><a href="#">Wishlists</a></li>                
+         @else
+                            <li  style="padding:10px;"><a href="/user_register">Sign Up</a></li>
+                            <li  style="padding:10px;"><a href="/user_signIn">Sign In</a></li>
+             @endif
+                        
+                          </ul>
+                        </li>
+                </ul>
+         
+
+   
 					<!-- /NAV -->
 				</div>
 				<!-- /responsive-nav -->
@@ -442,6 +464,12 @@ margin-left: 25vw;
     };
 };
 
+
+$('ul.nav li.dropdown').hover(function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+});
         </script>
 </body>
 <script>

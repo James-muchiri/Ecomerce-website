@@ -62,4 +62,33 @@ class LoginController extends Controller
        
         return redirect()->route('admin');
     }
+
+    public function getSignIn(Request $request)
+    {
+        return view('auth.User_Sign_In');
+    }
+    public function usersignIn(Request $request)
+    {
+        // dd(url()->current());
+        // dd($request);
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password'  => 'required|min:3'
+           ]);
+
+        $details = [ 'email' => $request->email , 'password' => $request->password ];
+           if (Auth::guard('userauth')->attempt($details)) {
+            return redirect()->route('index');
+        }
+           else{
+                return redirect()->back()->withInput()->withErrors(['password' => 'password does not exist',
+                                                                'email' => 'email does not exist']);
+           }
+    }
+    public function usersignOut(Request $request) {
+        Auth::guard('tecshop_signIn')->logout();
+        session()->forget('cart');
+        return redirect('/techshop');
+    }
+
 }

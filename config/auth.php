@@ -51,6 +51,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'userauth' => [
+            'driver' => 'session',
+            'provider' => 'eshopusers',
+        ],
     ],
 
     /*
@@ -78,6 +82,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Adimn::class,
+        ],
+        'eshopusers' => [
+            'driver' => 'eloquent',
+            'model' => App\Eshopusers::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

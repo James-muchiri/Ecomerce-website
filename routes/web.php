@@ -28,6 +28,12 @@ Route::get('/signin', function () {
 })->name('signin');
 
 Route::post('/signIn', 'Auth\LoginController@signIn')->name('signIn');
+Route::get('/user_register', 'UserController@register')->name('user_register');
+Route::post('/user_register_store', 'UserController@store_user_reg')->name('store_user_reg');
+Route::post('/usersignIn', 'Auth\LoginController@usersignIn')->name('usersignIn');
+Route::get('/user_signIn', 'Auth\LoginController@getSignIn')->name('getSignIn');
+
+
 
 Route::get('/', 'UserController@index')->name('index');
 Route::get('/contactus', 'UserController@contactus')->name('contactus');

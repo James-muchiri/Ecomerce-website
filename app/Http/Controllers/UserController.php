@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Categories;
 use App\Orders;
 use App\Products;
+use App\Eshopusers;
+use Redirect;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -40,6 +43,7 @@ class UserController extends Controller
 
 
     }
+
     public function addToCart(Request $request,$dataId)
     {
         session()->get('cart');
@@ -346,6 +350,39 @@ public function search1($data)
     $cart=session()->get('cart');
     $categories = Categories::where('is_hidden','=','no')->orderBy('created_at', 'DESC')->get();
     return view('search', compact(['products', 'cart', 'categories']));
+}
+
+
+
+public function register(){
+    return view('auth.userRegister');
+}
+
+
+public function store_user_reg(Request $request)
+{
+
+   $details= request()->validate([
+    'first_name' => ['required', 'string', 'max:255'],
+    'middle_name' => ['required', 'string', 'max:255'],
+    'last_name' => ['required', 'string', 'max:255'],
+    'phone_no' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email','max:255', 'unique:users'],
+        'address' => ['required', 'string', 'max:255'],
+        'password' => ['required', 'string', 'min:8', 'confirmed']
+    ]);
+
+    $user =  Eshopusers::create([
+        'first_name'=>$details['first_name'],
+        'middle_name'=>$details['middle_name'],
+        'last_name'=>$details['last_name'],
+        'phone_no'=>$details['phone_no'],        
+        'email'=>$details['email'],
+        'address'=>$details['address'],
+        'password'=> Hash::make($details['password'])
+        ]);
+
+    return Redirect::route('getSignIn');    
 }
 
 
