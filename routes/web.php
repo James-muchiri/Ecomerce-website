@@ -32,7 +32,7 @@ Route::get('/user_register', 'UserController@register')->name('user_register');
 Route::post('/user_register_store', 'UserController@store_user_reg')->name('store_user_reg');
 Route::post('/usersignIn', 'Auth\LoginController@usersignIn')->name('usersignIn');
 Route::get('/user_signIn', 'Auth\LoginController@getSignIn')->name('getSignIn');
-
+Route::get('/customer_signOut', 'Auth\LoginController@usersignOut');
 
 
 Route::get('/', 'UserController@index')->name('index');
@@ -46,12 +46,11 @@ Route::get('/addByOne/{dataId}', 'UserController@addByOne')->name('addItem');
 Route::post('/search', 'UserController@search')->name('search');
 Route::get('/search/{data}', 'UserController@search1')->name('search');
 Route::get('/searchbycat/{dataId}', 'UserController@searchbycat')->name('searchbycat');
-
+Route::POST('/indexx', 'UserController@indexx')->name('indexx');
 Route::group(['middleware' => ['prevent-back-history']],function(){
 
-    Route::get('/success', function () {
-        return view('success');
-    });
+
+    Route::get('/success', 'UserController@success');
     Route::get('/checkout', 'UserController@checkout')->name('checkout');
     Route::post('/checkout_products', 'UserController@checkout_products')->name('checkout_products');
   });

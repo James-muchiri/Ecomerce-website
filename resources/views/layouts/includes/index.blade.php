@@ -290,7 +290,9 @@ margin-left: 25vw;
                             <li  style="padding:10px;"><a href="#">{{auth()->guard('userauth')->user()->first_name}} {{auth()->guard('userauth')->user()->last_name}}</a></li>
                             <li  style="padding:10px;"><a href="#">Profile</a></li>
                             <li  style="padding:10px;"><a href="#">Change Password</a></li>     
-                            <li  style="padding:10px;"><a href="#">Wishlists</a></li>                
+                            <li  style="padding:10px;"><a href="#">Wishlists</a></li>      
+                            <li  style="padding:10px;"><a href="#">My Orders</a></li>    
+                            <li  style="padding:10px;"><a href="/customer_signOut">Logout</a></li>              
          @else
                             <li  style="padding:10px;"><a href="/user_register">Sign Up</a></li>
                             <li  style="padding:10px;"><a href="/user_signIn">Sign In</a></li>
@@ -402,23 +404,20 @@ margin-left: 25vw;
     </script>
 <!-- jQuery Plugins -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/slick.min.js') }}"></script>
-<script src="{{ asset('js/nouislider.min.js') }}"></script>
-<script src="{{ asset('js/jquery.zoom.min.js') }}"></script>
-<script src="{{ asset('js/main.js') }}" ></script>
 
-<script src="{{ asset('js/shop.js') }}" ></script>
 <script>
-    $(document).ready(function () {
-            var typingTimer;                //timer identifier
+$(function(){ 
+         
+            $("#searchbox").on('keyup', function () {
+                console.log("ddd");
+                var typingTimer;                //timer identifier
             var doneTypingInterval = 300;  //time in ms (5 seconds)
 
-            $("#searchbox").on('keyup', function () {
                 clearTimeout(typingTimer);
                 if ($('#searchbox').val()) {
                     typingTimer = setTimeout(doneTyping, doneTypingInterval);
+
+                    
                 }
             });
         });
@@ -428,8 +427,9 @@ margin-left: 25vw;
             var key = $('#searchbox').val();
 
             if (key.length >= 2) {
+                console.log("ddd");
                 $.ajax({
-                    url: "/api/indexx",
+                    url: "/indexx",
                     type: 'POST',
                     data:{
                         key,
@@ -472,10 +472,14 @@ $('ul.nav li.dropdown').hover(function() {
 });
         </script>
 </body>
-<script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/slick.min.js') }}"></script>
+<script src="{{ asset('js/nouislider.min.js') }}"></script>
+<script src="{{ asset('js/jquery.zoom.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}" ></script>
 
-
-    </script>
+<script src="{{ asset('js/shop.js') }}" ></script>
 
 
 

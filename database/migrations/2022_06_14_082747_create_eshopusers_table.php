@@ -13,7 +13,7 @@ class CreateEshopusersTable extends Migration
      */
     public function up()
     {
-        Schema::create('eshopusers', function (Blueprint $table) {
+        Schema::create('eshopusers', function (Blueprint $table) {  
             $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('middle_name');

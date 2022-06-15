@@ -86,9 +86,9 @@ class LoginController extends Controller
            }
     }
     public function usersignOut(Request $request) {
-        Auth::guard('tecshop_signIn')->logout();
+        Auth::guard('userauth')->logout();
         session()->forget('cart');
-        return redirect('/techshop');
+        return redirect()->route('index');
     }
 
 }

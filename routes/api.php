@@ -23,4 +23,4 @@ Route::post('/fetchorder', 'AdminController@fetchorders')->name('fetchorder');
 Route::get('/fetchorder', 'AdminController@fetchorders')->name('fetchorder');
 Route::post('/search_order', 'AdminController@search_order')->name('search_order');
 Route::post('/categorysearch', 'AdminController@categorysearch')->name('categorysearch');
-Route::POST('/indexx', 'UserController@indexx')->name('indexx');
+

@@ -191,10 +191,10 @@ public function checkout()
         return redirect()->back();
     }else{
 
-
+        $product = products::all()->where('is_hidden','=','no')->groupBy('category');
         $categories = Categories::where('is_hidden','=','no')->get();
         $products = Products::where('is_hidden','=','no')->get();
-        return view('checkout', compact(['products', 'cart', 'categories']));
+        return view('checkout', compact(['products', 'cart', 'categories', 'product']));
 
 
 
@@ -227,10 +227,10 @@ public function search(Request $request)
         $products = products:: where('name','LIKE',$query)
         ->where('category','=',$categories)->where('is_hidden','=','no')->get();
     }
-
+    $product = products::all()->where('is_hidden','=','no')->groupBy('category');
     $cart=session()->get('cart');
     $categories = Categories::all();
-    return view('search', compact(['products', 'cart', 'categories']));
+    return view('search', compact(['products', 'cart', 'categories', 'product']));
 }
 
 
@@ -239,14 +239,14 @@ public function searchbycat($dataId)
 
 
         $cat = Categories::where('name',$dataId)->first();
-        $post = $cat['id'];
+        $post = $cat['name'];
 
-        $products = products:: where('category_id','=',$post)->where('is_hidden','=','no')->get();
+        $products = products:: where('category','=',$post)->where('is_hidden','=','no')->get();
 
-
+        $product = products::all()->where('is_hidden','=','no')->groupBy('category');
     $cart=session()->get('cart');
     $categories = Categories::where('is_hidden','=','no')->get();
-    return view('search', compact(['products', 'cart', 'categories']));
+    return view('search', compact(['products', 'cart', 'categories', 'product']));
 }
 
 
@@ -321,7 +321,7 @@ public function checkout_products(Request $request)
 
 }
 
-public function indexx(Request $request){
+public function inde(Request $request){
     $query = "%".$request->key."%";
     $categories = Products::where('name','LIKE',$query)->where('is_hidden','=','no')->get();
 
@@ -346,17 +346,25 @@ public function search1($data)
         $products = products:: where('name','=',$item)->where('categories','=',$categories)
         ->where('is_hidden','=','no')->get();
     }
-
+    $product = products::all()->where('is_hidden','=','no')->groupBy('category');
     $cart=session()->get('cart');
-    $categories = Categories::where('is_hidden','=','no')->orderBy('created_at', 'DESC')->get();
-    return view('search', compact(['products', 'cart', 'categories']));
+    $categories = Categories::where('is_hidden','=','no')->get();
+    return view('search', compact(['products', 'cart', 'categories', 'product']));
 }
 
+public function success(){
+    $product = products::all()->where('is_hidden','=','no')->groupBy('category');
+    $cart=session()->get('cart');
+    $categories = Categories::where('is_hidden','=','no')->get();
+    return view('success', compact(['cart', 'categories', 'product']));
+}
 
 
 public function register(){
     return view('auth.userRegister');
 }
+
+
 
 
 public function store_user_reg(Request $request)
