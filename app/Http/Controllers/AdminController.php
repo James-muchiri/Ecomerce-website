@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\Products;
 use App\Orders;
+use App\Cat_advert;
+use App\Adverts;
 use Redirect;
 use Session;
 use Symfony\Component\Console\Helper\Table;
@@ -482,6 +484,82 @@ public function admin(){
     }
 
 
-    
+    public function adverts_cat()
+    {
+        $categories = Cat_advert::all();
+        return view('adverts_cat', compact(['categories' ]));
+
+
+    }
+    public function all_adverts()
+    {
+        $categories =Cat_advert::where('is_hidden', 'no')->get();
+        $products = Adverts::all();
+        return view('all_adverts', compact(['categories', 'products' ]));
+
+
+    }
+
+
+
+    public function store_advert(Request $request)
+    {
+        $request->validate([
+
+            'file' =>'required',
+        ]);
+       // ensure the request has a file before we attempt anything else.
+       if ($request->hasFile('file')) {
+
+        $request->validate([
+            'image' => 'mimes:jpeg,bmp,png,jpg' // Only allow .jpg, .bmp and .png file types.
+        ]);
+
+        // Save the file locally in the storage/public/ folder under a new folder named /product
+       // $request->file->store('product', 'public');
+        $imageName = $request->file->hashName();
+        $request->file->move(public_path('advert'), $imageName);
+
+        // Store the record, using the new file hashname which will be it's new filename identity.
+        $product = new Adverts([
+
+            "name" => $request->get('name'),
+            "description" => $request->get('description'),
+            "photo" => $imageName,
+            "category" => $request->get('category'),
+          
+
+
+
+        ]);
+        $product->save(); // Finally, save the record.
+        return redirect('/all_adverts')->with('success', 'Product saved!');
+    }
+    else{
+
+        return view('pages.tec_pages.tecshopAdimin');
+    }
+
+
+
+    }
+
+    public function post_cat(Request $request)
+    {
+
+        $request->validate([
+            'name'=>'required',
+
+        ]);
+
+
+
+        $contact = new Cat_advert([
+            'name' => $request->get('name'),
+                    ]);
+        $contact->save();
+        return redirect('/adverts_cats')->with('success', 'Category saved!');
+
+    }
 
 }

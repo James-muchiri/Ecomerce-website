@@ -15,7 +15,16 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="/hidden_products">Hidden Product</a></li>
                             <li><i class="fa fa-table"></i><a href="/products">All Products</a></li>
-                          
+
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Manage Adverts</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="/adverts_cats">Categories</a></li>
+                            <li><i class="fa fa-table"></i><a href="/all_adverts">All Adverts</a></li>
+
                         </ul>
                     </li>
 
@@ -25,7 +34,7 @@
                             <li><i class="fa fa-table"></i><a href="/pendingorders">Pending Order</a></li>
                             <li><i class="fa fa-table"></i><a href="/pendingdeliveries">Pending Deliveries</a></li>
                             <li><i class="fa fa-table"></i><a href="/completeorders">Completed Orders</a></li>
-                          
+
 
                         </ul>
                     </li>
@@ -35,4 +44,3 @@
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside>
-  

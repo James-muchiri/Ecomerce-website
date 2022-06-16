@@ -91,7 +91,10 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::get('/aprove_order/{dataId}', 'AdminController@approve_order')->name('aprove_order');
     Route::get('/is_delivered/{dataId}', 'AdminController@is_delivered')->name('is_delivered');
     Route::post('/fetchcat', 'AdminController@fetchcat')->name('fetchcat');
-
+    Route::get('/adverts_cats', 'AdminController@adverts_cat')->name('adverts_cats');
+    Route::get('/all_adverts', 'AdminController@all_adverts')->name('all_adverts');
+    Route::post('/store_advert', 'AdminController@store_advert')->name('store_advert');
+    Route::post('/admin/post_cat', 'AdminController@post_cat')->name('post_cat');
 
 
     Route::get('/viewbycategories', function () {
