@@ -393,5 +393,12 @@ public function store_user_reg(Request $request)
     return Redirect::route('getSignIn');    
 }
 
+public function adverts(){
+    $product = products::all()->where('is_hidden','=','no')->groupBy('category');
+ 
+    $categories = Categories::where('is_hidden','=','no')->get();
+    return view('adverts', compact(['categories', 'product']));
+}
+
 
 }

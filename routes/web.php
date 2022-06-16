@@ -36,6 +36,7 @@ Route::get('/customer_signOut', 'Auth\LoginController@usersignOut');
 
 
 Route::get('/', 'UserController@index')->name('index');
+Route::get('/adverts', 'UserController@adverts')->name('adverts');
 Route::get('/contactus', 'UserController@contactus')->name('contactus');
 Route::get('/aboutus', 'UserController@aboutus')->name('aboutus');
 Route::get('/addToCart/{dataId}', 'UserController@addToCart')->name('add');
