@@ -290,9 +290,9 @@ margin-left: 25vw;
                 @if (Auth::guard('userauth')->check())           
                             <li  style="padding:10px;"><a href="#">{{auth()->guard('userauth')->user()->first_name}} {{auth()->guard('userauth')->user()->last_name}}</a></li>
                             <li  style="padding:10px;"><a href="#">Profile</a></li>
-                            <li  style="padding:10px;"><a href="#">Change Password</a></li>     
-                            <li  style="padding:10px;"><a href="#">Wishlists</a></li>      
-                            <li  style="padding:10px;"><a href="#">My Orders</a></li>    
+                  
+   
+                            <li  style="padding:10px;"><a href="/myOrders">My Orders</a></li>    
                             <li  style="padding:10px;"><a href="/customer_signOut">Logout</a></li>              
          @else
                             <li  style="padding:10px;"><a href="/user_register">Sign Up</a></li>

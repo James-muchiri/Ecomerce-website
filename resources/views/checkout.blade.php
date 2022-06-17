@@ -23,7 +23,7 @@
                           @csrf <!-- {{ csrf_field() }} -->
                           <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Full Names:</label>
-                            <input type="text" class="form-control" id="recipienname" name="names" required>
+                            <input type="text" class="form-control" id="recipienname" name="names" value="{{auth()->guard('userauth')->user()->first_name}} {{auth()->guard('userauth')->user()->last_name}}" readonly>
                           </div>
                           <div class="form-group">
                             <label for="message-text" class="col-form-label">PhoneNumber:</label>

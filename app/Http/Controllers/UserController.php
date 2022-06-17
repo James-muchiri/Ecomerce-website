@@ -191,20 +191,49 @@ public function checkout()
         return redirect()->back();
     }else{
 
-        $product = products::all()->where('is_hidden','=','no')->groupBy('category');
-        $categories = Categories::where('is_hidden','=','no')->get();
-        $products = Products::where('is_hidden','=','no')->get();
-        return view('checkout', compact(['products', 'cart', 'categories', 'product']));
+  
+       
 
-
+        return redirect()->route('checkout_signIn');
 
     }
 }
 
 
+public function checkout_signIn(Request $request)
+{
+    $product = products::all()->where('is_hidden','=','no')->groupBy('category');
+    $categories = Categories::where('is_hidden','=','no')->get();
+    $products = Products::where('is_hidden','=','no')->get();
+    $user=auth()->guard('userauth')->user();
+    $cart = session()->get('cart');
+    if (!$user) {
+        return view('auth.User_Sign_In');
+    } elseif(!$cart) {
+      
+        return redirect()->route('index');
 
+    }
+    else{
+        return view('checkout', compact(['products', 'cart', 'categories', 'product']));
+    }
+}
 
+public function myOrders(){
+    $user=auth()->guard('userauth')->user();
+    if (!$user) {
+        return view('auth.User_Sign_In');
+    } else{
 
+        $product = products::all()->where('is_hidden','=','no')->groupBy('category');
+        $categories = Categories::where('is_hidden','=','no')->get();
+        $products = Products::where('is_hidden','=','no')->get();
+        $orders = Orders::where('user_id', auth()->guard('userauth')->user()->id )->get();
+
+        return view('myOrders', compact(['products', 'categories', 'product', 'orders']));
+    }
+
+}
 
 
 
@@ -273,23 +302,10 @@ public function checkout_products(Request $request)
 
     }
 
-    //return response()->json($total);
-/*
-    $product = new Orders([
 
-
-       "order_number"=>uniqid(),
-        "names" => $request->get('names'),
-        "phone_number" => $request->get('phone_number'),
-        "mode_of_delivery" => $request->get('mode'),
-        "location" => $request->get('location'),
-        "cart" => serialize($cart),
-        "total" => $total,
-        "item_count" => $item_count
-            ]);
-            $product->save(); */ // Finally, save the record.
      $order= new Orders();
     $order->names = $request->get('names');
+    $order->user_id = auth()->guard('userauth')->user()->id;
     $order->phone_number = $request->get('phone_number');
     $order->mode_of_delivery = $request->get('mode');
     if( $order->mode_of_delivery == 'delivery')
@@ -400,5 +416,18 @@ public function adverts(){
     return view('adverts', compact(['categories', 'product']));
 }
 
+
+public function view_orderhistory($dataId)
+{
+
+    $posts=  Orders::whereIn('id',[$dataId])->first();
+
+    $cartss=unserialize($posts->cart);
+    $categories = Categories::where('is_hidden','=','no')->get();
+    $product = products::all()->where('is_hidden','=','no')->groupBy('category');
+ 
+    return view('uservieworder', compact(['posts','cartss', 'categories', 'product']));
+
+}
 
 }

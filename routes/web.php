@@ -48,6 +48,9 @@ Route::post('/search', 'UserController@search')->name('search');
 Route::get('/search/{data}', 'UserController@search1')->name('search');
 Route::get('/searchbycat/{dataId}', 'UserController@searchbycat')->name('searchbycat');
 Route::POST('/indexx', 'UserController@indexx')->name('indexx');
+Route::get('/checkout_signIn', 'UserController@checkout_signIn')->name('checkout_signIn');
+Route::get('/myOrders', 'UserController@myOrders');
+Route::get('/userview_orderhistory/{dataId}', 'UserController@view_orderhistory')->name('userview_orderhistory');
 Route::group(['middleware' => ['prevent-back-history']],function(){
 
 
