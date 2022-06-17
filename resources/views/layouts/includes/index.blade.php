@@ -272,7 +272,7 @@ margin-left: 25vw;
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="/">Home</a></li>
-                        <li><a href="/adverts">Adverts</a></li>
+                        {{-- <li><a href="/adverts">Adverts</a></li> --}}
                         @foreach($product as $category => $categoryItems)
 
 

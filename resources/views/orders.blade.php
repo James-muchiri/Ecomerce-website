@@ -60,6 +60,7 @@
               <div>
                 <a style="margin: 19px;" href="" class="btn btn-primary">New Product</a>
                 </div> 
+                <div class="table-responsive" >
               <table class="table table-striped">
     <thead>
       <tr>
@@ -94,5 +95,6 @@
       
     </tbody>
   </table>
+                </div>
           </div>
 </body>

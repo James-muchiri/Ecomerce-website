@@ -79,6 +79,7 @@ span{
                 </div> 
                         <div class="row" >
                             <h5> Items Purchased</h5>
+                            <div class="table-responsive" >
                                                      <table class="table" id="invoice_tabl" border="0" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>   
@@ -133,7 +134,7 @@ span{
                 </tr>
             </tfoot>
         </table>
-        
+                            </div>
 
                </div>
         </div>
@@ -171,8 +172,6 @@ span{
         <div class="clearfix"></div>
         <!-- Footer -->
 
-
-    <!-- /#right-panel -->
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
@@ -274,4 +273,5 @@ jQuery(document).ready(function($) {
 
 </body>
 </html>
+
 

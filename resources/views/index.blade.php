@@ -236,34 +236,20 @@
 					{{-- <p class="control_next"><i class="fas fa-angle-right"></i></p>
 					<p class="control_prev"><i class="fas fa-angle-left"></i></p> --}}
 					<ul>
-						  <li class="slide1">
-							  <div class="slider-title-wrapper">
-								  <h3 class="slider-title"><span class="slider-title-h3">Slide 1</span>
-						  <span class="slider-subtitle">This is the first slide</span></h3>
-							  </div>
-							  <img src="https://images.unsplash.com/photo-1560779937-740129433ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2133&q=80" alt="">
-						  </li>
-						  <li class="slide2">
-							  <div class="slider-title-wrapper">
-								  <h3 class="slider-title"><span class="slider-title-h3">Slide 2</span>
-								  <span class="slider-subtitle">This is the second slide</span></h3>
-							  </div>
-							<img src="https://images.unsplash.com/photo-1508216310976-c518daae0cdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1674&q=80" alt="">
-					  </li>
-						  <li class="slide3">
-							  <div class="slider-title-wrapper">
-								  <h3 class="slider-title"><span class="slider-title-h3">Slide 3</span>
-								  <span class="slider-subtitle">This is the third slide</span></h3>
-							  </div>
-							  <img src="https://images.unsplash.com/photo-1588165231518-b4b22bfa0ddf?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80" alt="">
-						  </li>
-						  <li class="slide4">
-							  <div class="slider-title-wrapper">
-								  <h3 class="slider-title"><span class="slider-title-h3">Slide 4</span>
-								  <span class="slider-subtitle">This is the fourth slide</span></h3>
-							  </div>
-							<img src="https://images.unsplash.com/photo-1514846326710-096e4a8035e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80" alt="">
-						  </li>
+						@php
+						$slides2 = \App\Adverts::inRandomOrder()->get();
+
+						@endphp
+						
+						@foreach ($slides2 as $slide2 )
+						<li class="slide1">
+							<div class="slider-title-wrapper">
+								<h3 class="slider-title"><span class="slider-title-h3">{{$slide2->description}}</span>
+						<span class="slider-subtitle">{{$slide2->name}}</span></h3>
+							</div>
+							<img src="{{ asset('advert') }}/{{$slide2->photo}}" alt="">
+						</li>
+						@endforeach
 					   </ul>
 				  </div>
 			</div>
@@ -378,34 +364,24 @@
 						{{-- <p class="control_next"><i class="fas fa-angle-right"></i></p>
 						<p class="control_prev"><i class="fas fa-angle-left"></i></p> --}}
 						<ul>
-							  <li class="slide1">
-								  <div class="slider-title-wrapper">
-									  <h3 class="slider-title"><span class="slider-title-h3">Slide 1</span>
-							  <span class="slider-subtitle">This is the first slide</span></h3>
-								  </div>
-								  <img src="https://images.unsplash.com/photo-1560779937-740129433ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2133&q=80" alt="">
-							  </li>
-							  <li class="slide2">
-								  <div class="slider-title-wrapper">
-									  <h3 class="slider-title"><span class="slider-title-h3">Slide 2</span>
-									  <span class="slider-subtitle">This is the second slide</span></h3>
-								  </div>
-								<img src="https://images.unsplash.com/photo-1508216310976-c518daae0cdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1674&q=80" alt="">
-						  </li>
-							  <li class="slide3">
-								  <div class="slider-title-wrapper">
-									  <h3 class="slider-title"><span class="slider-title-h3">Slide 3</span>
-									  <span class="slider-subtitle">This is the third slide</span></h3>
-								  </div>
-								  <img src="https://images.unsplash.com/photo-1588165231518-b4b22bfa0ddf?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80" alt="">
-							  </li>
-							  <li class="slide4">
-								  <div class="slider-title-wrapper">
-									  <h3 class="slider-title"><span class="slider-title-h3">Slide 4</span>
-									  <span class="slider-subtitle">This is the fourth slide</span></h3>
-								  </div>
-								<img src="https://images.unsplash.com/photo-1514846326710-096e4a8035e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80" alt="">
-							  </li>
+							@php
+							$slides = \App\Adverts::inRandomOrder()->get();
+
+							@endphp
+							
+							@foreach ($slides as $slide )
+							<li class="slide1">
+								<div class="slider-title-wrapper">
+									<h3 class="slider-title"><span class="slider-title-h3">{{$slide->description}}</span>
+							<span class="slider-subtitle">{{$slide->name}}</span></h3>
+								</div>
+								<img src="{{ asset('advert') }}/{{$slide->photo}}" alt="">
+							</li>
+							@endforeach
+						
+						
+							
+							 
 						   </ul>
 					  </div>
 				</div>
